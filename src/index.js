@@ -1,17 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import reducer, { initialState } from "./Reducer";
+import { StateProvider } from "./StateProvider";
+import { BrowserRouter as Router } from 'react-router-dom';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// Initialize the root of the React application using the `createRoot` method
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    {/* Wrap the App component with the StateProvider to manage global state */}
+    <StateProvider initialState={initialState} reducer={reducer}>
+      {/* Wrap the App component with Router for routing */}
+      <Router>
+        <App />
+      </Router>
+    </StateProvider>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// Register the service worker for offline capabilities and faster loading times
+serviceWorkerRegistration.register();
