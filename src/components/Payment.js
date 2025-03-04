@@ -22,6 +22,10 @@ function Payment() {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
+    if (basket.length === 0) {
+      navigate("/");
+      return;
+    }
     const getClientSecret = async () => {
       try {
         const response = await axios({

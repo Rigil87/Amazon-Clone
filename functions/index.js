@@ -14,7 +14,7 @@ const stripe = require("stripe")(functions.config().stripe.secret_key);
 const app = express();
 
 // MIDDLEWARES
-app.use(cors({ origin: "*" }));
+app.use(cors({ origin: true }));
 app.use(express.json());
 
 // API ROUTES

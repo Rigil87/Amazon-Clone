@@ -11,15 +11,20 @@ import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import testFirestore, { testAuth } from './tests/firebaseTest';
 
-const promise = loadStripe("pk_live_51Qwx05P5ms7TrF3S6CxhgzDcNgkuluIlO5cBqm6ZoBeL8cVom0BftWkRWm5DnnitqlzQt25nR232csBBmwIeaHIc00SuldkuOI");
+
+
+
+
+const promise = loadStripe("pk_live_51Qwx05P5ms7TrF3S6CxhgzDcNgkuluIlO5cBqm6ZoBeL8cVom0BftWkRWm5DnnitqlzQt25r232csBBmwIeaHIc00SuldkuOI");
 
 function App() {
   const [{}, dispatch] = useStateValue();
   const location = useLocation(); // Get the current location
 
   useEffect(() => {
-    // will only run once when the app component load, kind of like a dynamic if statement in react
+    // Monitor authentication state changes
     auth.onAuthStateChanged((authUser) => {
       console.log("THE USER IS >>>", authUser);
 
@@ -30,13 +35,17 @@ function App() {
           user: authUser,
         });
       } else {
-        // the user is logged out
+        // The user is logged out
         dispatch({
           type: "SET_USER",
           user: null,
         });
       }
     });
+
+    // Run Firebase connection tests
+    testFirestore();
+    testAuth();
   }, []);
 
   return (
