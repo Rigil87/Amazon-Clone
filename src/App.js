@@ -21,18 +21,15 @@ function App() {
   const location = useLocation(); // Get the current location
 
   useEffect(() => {
-    // Monitor authentication state changes
     auth.onAuthStateChanged((authUser) => {
       console.log("THE USER IS >>>", authUser);
 
       if (authUser) {
-        // The user just logged in / the user was logged in
         dispatch({
           type: "SET_USER",
           user: authUser,
         });
       } else {
-        // The user is logged out
         dispatch({
           type: "SET_USER",
           user: null,
@@ -40,14 +37,12 @@ function App() {
       }
     });
 
-    // Run Firebase connection tests
     testFirestore();
     testAuth();
   }, [dispatch]);
 
   return (
     <div className="App">
-      {/* Conditionally render the Header */}
       {location.pathname !== "/login" && <Header />}
       <Routes>
         <Route
@@ -83,14 +78,13 @@ function App() {
           }
         />
         <Route
-          path="/products/:id" // Add this route for product details
+          path="/products/:id" // Ensure this path matches the link in the Product component
           element={
             <div>
               <ProductDetails />
             </div>
           }
         />
-        {/* Default route must be at bottom */}
         <Route
           path="/"
           element={

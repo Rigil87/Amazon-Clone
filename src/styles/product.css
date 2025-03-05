@@ -42,7 +42,7 @@
     transform: scale(1.1);
   }
 
-  .product > button {
+  .button1, .button2 {
     background: #f0c14b;
     border: 1px solid;
     margin-top: 10px;
@@ -51,7 +51,13 @@
     transition: ease;
   }
   
-  .product > button:hover {
+  .button1:hover {
+    cursor: pointer;
+    transition: 200ms;
+    background-color: #a88734;
+
+  }
+  .button2:hover {
     cursor: pointer;
     transition: 200ms;
     background-color: #a88734;
@@ -66,3 +72,5 @@
     margin-bottom: 15px;
     text-align: center;
   }
+
+  
