@@ -1,47 +1,47 @@
-const { onRequest, logger } = require("firebase-functions/v2");
-const express = require("express");
-require("dotenv").config();
+// Import necessary modules
+const {https} = require('firebase-functions/v2');
+const express = require('express');
+require('dotenv').config();
+const cors = require('cors');
+const admin = require('firebase-admin');
 
-const cors = require("cors");
-const functions = require("firebase-functions");
+// Load Stripe secret key from environment variables
+console.log('STRIPE_SECRET_KEY:', process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-// Ensure your STRIPE_SECRET_KEY is being loaded
-console.log("STRIPE_SECRET_KEY:", functions.config().stripe.secret_key);
+// Initialize Firebase Admin
+admin.initializeApp();
 
-const stripe = require("stripe")(functions.config().stripe.secret_key);
-
-// APP CONFIG
+// Create an Express app
 const app = express();
 
-// MIDDLEWARES
-app.use(cors({ origin: true }));
+// Apply middleware
+app.use(cors({origin: true}));
 app.use(express.json());
 
-// API ROUTES
-app.post("/payments/create", async (req, res) => {
+// Define API routes
+app.post('/payments/create', async (req, res) => {
   const total = req.query.total;
-  logger.info(`Received payment request for amount: ${total}`);
+  console.log(`Received payment request for amount: ${total}`);
 
   if (!total || isNaN(total)) {
-    return res.status(400).send({ error: "Invalid amount" });
+    return res.status(400).send({error: 'Invalid amount'});
   }
 
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: parseInt(total),
-      currency: "usd",
+      currency: 'usd',
     });
-
-    logger.info(`Payment Intent Created: ${paymentIntent.id}`);
-
+    console.log(`Payment Intent Created: ${paymentIntent.id}`);
     res.status(201).send({
       clientSecret: paymentIntent.client_secret,
     });
   } catch (error) {
-    logger.error(`Error creating payment intent: ${error.message}`);
-    res.status(500).send({ error: error.message });
+    console.error(`Error creating payment intent: ${error.message}`);
+    res.status(500).send({error: error.message});
   }
 });
 
-// LISTEN COMMAND
-exports.api = onRequest(app);
+// Export the Express app as a Cloud Function
+exports.api = https.onRequest(app);
