@@ -1,4 +1,5 @@
 // Import the necessary React library and other required modules
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css'; // Import the CSS file for styling the application

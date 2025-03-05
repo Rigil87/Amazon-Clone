@@ -12,13 +12,24 @@
     z-index: 1;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s 
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
 
   .product__rating {
     display: flex;
   }
   
+  .product__title {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #333;
+  }
+
   .product > img {
     max-height: 200px;
     width: 100%;
@@ -53,4 +64,5 @@
   .product__info {
     height: 100px;
     margin-bottom: 15px;
+    text-align: center;
   }
