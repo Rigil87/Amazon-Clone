@@ -1,17 +1,22 @@
-import React from "react";
-import "../styles/home.css";
-import Product from "./Product";
+// Import the necessary React library and other required modules
+import React from 'react';
+import '../styles/home.css'; // Import the CSS file for styling the component
+import Product from './Product'; // Import the Product component
 
+// Define the Home functional component
 function Home() {
+  // Return the JSX structure for the Home component
   return (
     <div className="home">
       <div className="home__container">
+        {/* Display the home page banner image */}
         <img
           className="home__image"
           src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
           alt=""
         />
 
+        {/* Display a row of Product components */}
         <div className="home__row">
           <Product
             id="12321341"
@@ -29,6 +34,7 @@ function Home() {
           />
         </div>
 
+        {/* Display another row of Product components */}
         <div className="home__row">
           <Product
             id="4903850"
@@ -53,6 +59,7 @@ function Home() {
           />
         </div>
 
+        {/* Display a single Product component in its own row */}
         <div className="home__row">
           <Product
             id="90829332"
@@ -67,4 +74,5 @@ function Home() {
   );
 }
 
+// Export the Home component as the default export
 export default Home;

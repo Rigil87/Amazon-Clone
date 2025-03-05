@@ -1,22 +1,20 @@
+// Import the necessary React library and other required modules
 import React, { useEffect } from "react";
-import "./App.css";
-import Header from "./components/Header";
-import Home from "./components/Home";
-import Checkout from "./components/Checkout";
-import Login from "./components/Login";
-import Payment from "./components/Payment";
-import Orders from "./components/Orders";
-import { Routes, Route, useLocation } from "react-router-dom";
-import { auth } from "./firebase";
-import { useStateValue } from "./StateProvider";
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-import testFirestore, { testAuth } from './tests/firebaseTest';
+import "./App.css"; // Import the CSS file for styling the component
+import Header from "./components/Header"; // Import the Header component
+import Home from "./components/Home"; // Import the Home component
+import Checkout from "./components/Checkout"; // Import the Checkout component
+import Login from "./components/Login"; // Import the Login component
+import Payment from "./components/Payment"; // Import the Payment component
+import Orders from "./components/Orders"; // Import the Orders component
+import { Routes, Route, useLocation } from "react-router-dom"; // Import routing components from react-router-dom
+import { auth } from "./firebase"; // Import the Firebase authentication module
+import { useStateValue } from "./StateProvider"; // Import the useStateValue hook for accessing the global state
+import { Elements } from '@stripe/react-stripe-js'; // Import Elements component from Stripe for payment integration
+import { loadStripe } from '@stripe/stripe-js'; // Import loadStripe function to initialize Stripe
+import testFirestore, { testAuth } from './tests/firebaseTest'; // Import Firebase test functions
 
-
-
-
-
+// Initialize Stripe with your publishable key
 const promise = loadStripe("pk_live_51Qwx05P5ms7TrF3S6CxhgzDcNgkuluIlO5cBqm6ZoBeL8cVom0BftWkRWm5DnnitqlzQt25r232csBBmwIeaHIc00SuldkuOI");
 
 function App() {
@@ -46,7 +44,7 @@ function App() {
     // Run Firebase connection tests
     testFirestore();
     testAuth();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">
