@@ -5,7 +5,9 @@ import Checkout from "./components/Checkout";
 import Login from "./components/Login";
 import Payment from "./components/Payment";
 import Orders from "./components/Orders";
-import ProductDetails from "./components/ProductDetails"; // Import the new ProductDetails component
+import ProductDetails from "./components/ProductDetails"; 
+import AddProduct from "./components/AddProduct";
+import DeleteProduct from "./components/DeleteProduct";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
@@ -84,6 +86,23 @@ function App() {
             </div>
           }
         />
+        <Route 
+          path="/add-product" 
+          element={
+            <div>
+              <AddProduct />
+            </div>
+            
+            } />
+        <Route 
+          path="/delete-product" 
+          element={
+            <div>
+              <DeleteProduct />
+            </div>
+            
+            } />
+
         <Route
           path="/"
           element={

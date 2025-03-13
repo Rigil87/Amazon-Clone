@@ -1,0 +1,59 @@
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .edit-form input,
+  .edit-form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .save__button {
+    background: #f0c14b;
+    border: 1px solid;
+    margin-top: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111;
+    transition: ease;
+  }
+  
+  .save__button:hover {
+    cursor: pointer;
+    transition: 200ms;
+    background-color: #a88734;
+  }
+  
+  .edit__button {
+    background: #f0c14b;
+    border: 1px solid;
+    margin-top: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111;
+    transition: ease;
+  }
+  
+  .edit__button:hover {
+    cursor: pointer;
+    transition: 200ms;
+    background-color: #a88734;
+  }
+  .cancel__button {
+    background: #f0c14b;
+    border: 1px solid;
+    margin-top: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111;
+    transition: ease;
+  }
+  
+  .cancel__button:hover {
+    cursor: pointer;
+    transition: 200ms;
+    background-color: #a88734;
+  }
+  
